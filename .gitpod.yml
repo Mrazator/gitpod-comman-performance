@@ -1,0 +1,21 @@
+image:
+  file: Dockerfile.gitpod
+  
+tasks:
+  - name: General
+    init: |-
+      curl -L -o liveshare.vsix "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/Microsoft/vsextensions/vsliveshare/latest/vspackage"
+    command: |-
+      date
+      echo "Command execution [started]"
+
+      date
+      echo "List extension"
+      code --list-extensions --show-versions | grep -q -s Microsoft.vsliveshare
+      date
+      
+      echo "Installing extension"
+      code --install-extension liveshare.vsix --force
+
+      date
+      echo "Command execution [finished]"
